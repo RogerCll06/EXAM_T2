@@ -4,7 +4,6 @@ package com.EXAM_T2.EXAM_T2.Model;
 
 	import java.util.Date;
 	import org.springframework.format.annotation.DateTimeFormat;
-	import jakarta.persistence.CascadeType;
 	import jakarta.persistence.Entity;
 	import jakarta.persistence.GeneratedValue;
 	import jakarta.persistence.GenerationType;
@@ -31,9 +30,9 @@ package com.EXAM_T2.EXAM_T2.Model;
 
 	    private Long clienteId;
 
-	    @ManyToOne(cascade = CascadeType.REMOVE)  // Se elimina la orden si el libro es eliminado
-	    @JoinColumn(name = "libro_id")
-	    private Libro libro;
+	    @ManyToOne
+		@JoinColumn(name = "libro_id")
+		private Libro libro;
 	    
 	    @DateTimeFormat(pattern = "yyyy-MM-dd")
 	    private Date fechaDeOrden;
