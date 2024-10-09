@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Formulario de Orden</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">		
+        <h2 class="my-4" th:text="${orden.ordenId} != null ? 'Editar Orden' : 'Registrar Nueva Orden'"></h2>
+        <form action="/apiOrdenes/GuardarOrden" th:object="${orden}" method="POST">
+            <input type="hidden" th:field="*{ordenId}"> 
+
+            <div class="mb-3">
+                <label for="clienteId" class="form-label">Cliente ID</label>
+                <input type="text" id="clienteId" th:field="*{clienteId}" class="form-control" placeholder="Ingresar Cliente ID" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="libroId" class="form-label">Libro ID</label>
+                <input type="text" id="libroId" th:field="*{libro.libroId}" class="form-control" placeholder="Ingresar ID del Libro" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="fechaDeOrden" class="form-label">Fecha de Orden</label>
+                <input type="date" id="fechaDeOrden" th:field="*{fechaDeOrden}" class="form-control" required>
+            </div>
+
+            <div class="box-footer">
+                <input type="submit" class="btn btn-success" value="Guardar">
+            </div>			
+        </form>
+    </div>	
+</body>
+</html>

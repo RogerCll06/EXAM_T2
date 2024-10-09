@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Órdenes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Órdenes</h1>
+        <a href="/apiOrdenes/nuevoOrden" class="btn btn-primary mb-3">Nueva Orden</a>
+        <table class="table table-striped">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">ID</th>
+                    <th scope="col">Cliente ID</th>
+                    <th scope="col">Libro</th>
+                    <th scope="col">Fecha de Orden</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr align="center" th:each="orden : ${ordenes}">
+                    <td th:text="${orden.ordenId}"></td>
+                    <td th:text="${orden.clienteId}"></td>
+                    <td th:text="${orden.libro.titulo}"></td> <!-- Asumiendo que el objeto Libro tiene un atributo 'titulo' -->
+                    <td th:text="${orden.fechaDeOrden}"></td>
+                    <td>
+                        <a th:href="@{/apiOrdenes/editar/{id}(id=${orden.ordenId})}" class="btn btn-warning">Editar</a>
+                        <a th:href="@{/apiOrdenes/eliminar/{id}(id=${orden.ordenId})}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
